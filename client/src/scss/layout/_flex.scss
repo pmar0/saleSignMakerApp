@@ -1,0 +1,9 @@
+@use '../utils' as u;
+
+.flex {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: u.rem(40);
+    margin-inline: auto;
+    width: min(100% - u.rem(40), u.rem(1000));
+}

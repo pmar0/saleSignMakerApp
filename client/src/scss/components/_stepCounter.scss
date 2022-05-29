@@ -1,10 +1,6 @@
 @use '../utils/' as u;
 @use '../global/colors' as c;
 
-h1{
-    text-align: center;
-}
-
 .step-counter {
     counter-reset: step;
     ul {
@@ -24,47 +20,100 @@ h1{
                 width: u.rem(30);
                 aspect-ratio: 1 / 1;
                 background-color: c.$background-color;
-                border: 1px solid hsl(0, 0%, 87%);
+                border: 2px solid hsl(0, 0%, 87%);
                 justify-content: center;
                 align-items: center;
                 margin-inline: auto;
                 border-radius: 50%;
+                margin-bottom: u.rem(5);
+                transition: background-color 400ms,
+                            border-color 400ms,
+                            transform 200ms ease-in,
+                            border-radius 150ms ease-in;
+            }
+
+            &.active::before {
+                border-color: c.$stepper-green-light;
+                background-color: c.$stepper-green;
+                transform: scale(1.2);
+                border-radius: 35%;
+                transition-delay: 825ms;
+            }
+            
+            &.complete::before {
+                content: '';
+                border-color: c.$stepper-green;
+                background-color: c.$stepper-green;
             }
 
             &.square::before{
                 border-radius: 25%;
             }
 
+            &.square.active::before{
+                border-radius: 50%;
+            }
+
             &::after{
                 content: '';
-                background-color: white;
                 position: absolute;
+                background-color: c.$stepper-green;
                 height: u.rem(4);
                 width: 100%;
                 top: u.rem(13);
                 left: -50%;
                 z-index: -1;
+                transform: scaleX(0);
+                transition: transform 500ms ease-in;
+                transform-origin: left;
+                transition-delay: 400ms;
             }
 
-            &:first-child:after {
+            &:first-child::after {
                 content: none;
             }
 
-            &.active {
-                color: hsl(120, 100%, 27%);
-            }
-
-            &.active::before {
-                color: white;
-                border-color: hsl(120, 100%, 27%);
-                background-color: hsl(120, 97%, 15%);
-            }
-
             &.active::after {
-                background-color: hsl(120, 97%, 15%);
+                transform: scaleX(1);
             }
 
-            //add completed state for steps that were completed
+            &.complete::after {
+                transform: scaleX(1);
+            }
+
+            .checkmark-container {
+                display: flex;
+                justify-content: center;
+                position: absolute;
+                top: u.rem(7);
+                width: 100%;
+            }
+
+            .checkmark-svg {
+                width: 0px;
+                height: 0px;
+                stroke-dashoffset: u.rem(1000);
+                transition: stroke-dashoffset 1500ms ease-in;
+            }
+
+            &.complete .checkmark-svg {
+                stroke: white;
+                stroke-width: u.rem(4);
+                width: u.rem(15);
+                height: u.rem(15);
+                stroke-dashoffset: 0;
+                stroke-dasharray: u.rem(1000);
+            }
+
+            .step-connector-line {
+                background-color: white;
+                height: u.rem(4);
+                width: 100%;
+                position: absolute;
+                top: u.rem(13);
+                left: -50%;
+                z-index: -2;
+            }
         }
     }
 }

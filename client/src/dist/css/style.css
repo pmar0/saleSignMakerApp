@@ -7,6 +7,11 @@ html {
   box-sizing: inherit;
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -44,9 +49,6 @@ a, a:visited, a:active {
   gap: 2.5rem;
   margin-inline: auto;
   width: min(100% - 2.5rem, 62.5rem);
-}
-
-h1 {
   text-align: center;
 }
 
@@ -70,36 +72,130 @@ h1 {
   width: 1.875rem;
   aspect-ratio: 1/1;
   background-color: hsl(0deg, 0%, 11%);
-  border: 1px solid hsl(0deg, 0%, 87%);
+  border: 2px solid hsl(0deg, 0%, 87%);
   justify-content: center;
   align-items: center;
   margin-inline: auto;
   border-radius: 50%;
+  margin-bottom: 0.3125rem;
+  transition: background-color 400ms, border-color 400ms, transform 200ms ease-in, border-radius 150ms ease-in;
+}
+.step-counter ul .step.active::before {
+  border-color: hsl(115deg, 98%, 34%);
+  background-color: hsl(120deg, 96%, 29%);
+  transform: scale(1.2);
+  border-radius: 35%;
+  transition-delay: 825ms;
+}
+.step-counter ul .step.complete::before {
+  content: "";
+  border-color: hsl(120deg, 96%, 29%);
+  background-color: hsl(120deg, 96%, 29%);
 }
 .step-counter ul .step.square::before {
   border-radius: 25%;
 }
+.step-counter ul .step.square.active::before {
+  border-radius: 50%;
+}
 .step-counter ul .step::after {
   content: "";
-  background-color: white;
   position: absolute;
+  background-color: hsl(120deg, 96%, 29%);
   height: 0.25rem;
   width: 100%;
   top: 0.8125rem;
   left: -50%;
   z-index: -1;
+  transform: scaleX(0);
+  transition: transform 500ms ease-in;
+  transform-origin: left;
+  transition-delay: 400ms;
 }
-.step-counter ul .step:first-child:after {
+.step-counter ul .step:first-child::after {
   content: none;
 }
-.step-counter ul .step.active {
-  color: hsl(120deg, 100%, 27%);
-}
-.step-counter ul .step.active::before {
-  color: white;
-  border-color: hsl(120deg, 100%, 27%);
-  background-color: hsl(120deg, 97%, 15%);
-}
 .step-counter ul .step.active::after {
-  background-color: hsl(120deg, 97%, 15%);
+  transform: scaleX(1);
+}
+.step-counter ul .step.complete::after {
+  transform: scaleX(1);
+}
+.step-counter ul .step .checkmark-container {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 0.4375rem;
+  width: 100%;
+}
+.step-counter ul .step .checkmark-svg {
+  width: 0px;
+  height: 0px;
+  stroke-dashoffset: 62.5rem;
+  transition: stroke-dashoffset 1500ms ease-in;
+}
+.step-counter ul .step.complete .checkmark-svg {
+  stroke: white;
+  stroke-width: 0.25rem;
+  width: 0.9375rem;
+  height: 0.9375rem;
+  stroke-dashoffset: 0;
+  stroke-dasharray: 62.5rem;
+}
+.step-counter ul .step .step-connector-line {
+  background-color: white;
+  height: 0.25rem;
+  width: 100%;
+  position: absolute;
+  top: 0.8125rem;
+  left: -50%;
+  z-index: -2;
+}
+
+.arrowButton {
+  position: relative;
+  font-size: 1.25rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  width: 8.125em;
+  padding: 0.625em 0.625em;
+  border: none;
+  border-radius: 0.1875rem;
+  outline: 0;
+  cursor: pointer;
+  background-color: hsl(120deg, 96%, 29%);
+  color: hsl(0deg, 0%, 100%);
+  margin: 0.625rem;
+  transition: background-color 200ms ease-in;
+}
+.arrowButton .chevron-container {
+  width: 100%;
+  display: grid;
+}
+.arrowButton .chevron-container .chevron {
+  position: absolute;
+  top: 0.625rem;
+  width: 1.6875rem;
+  aspect-ratio: 1/1;
+  stroke-width: 0.16875rem;
+  transition: transform 200ms ease-in;
+}
+.arrowButton .chevron-container .chevron.prev {
+  justify-self: flex-start;
+}
+.arrowButton .chevron-container .chevron.next {
+  justify-self: flex-end;
+}
+.arrowButton:hover:enabled {
+  background-color: hsl(120deg, 95%, 22%);
+}
+.arrowButton:hover:enabled .chevron.next {
+  transform: translateX(0.1875rem);
+}
+.arrowButton:hover:enabled .chevron.prev {
+  transform: translateX(-0.1875rem);
+}
+.arrowButton:disabled {
+  opacity: 60%;
+  cursor: default;
 }/*# sourceMappingURL=style.css.map */

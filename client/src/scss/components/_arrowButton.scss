@@ -1,0 +1,60 @@
+@use '../utils/' as u;
+@use '../global/colors' as c;
+
+.arrowButton {
+    position: relative;
+    font-size: u.rem(20);
+    font-weight: 500;
+    text-transform: capitalize;
+    width: u.em(130);
+    padding: u.em(10) u.em(10);
+    border: none;
+    border-radius: u.rem(3);
+    outline: 0;
+    cursor: pointer;
+    background-color: c.$stepper-green;
+    color: c.$text-color;
+    margin: u.rem(10);
+    transition: background-color 200ms ease-in;
+
+    .chevron-container{
+        width: 100%;
+        display: grid;
+
+        .chevron {
+            position: absolute;
+            top: u.rem(10);
+            width: u.rem(27);
+            aspect-ratio: 1 / 1;
+            stroke-width: u.rem(2.7);
+            transition: transform 200ms ease-in;
+            
+            &.prev {
+                justify-self: flex-start;
+            }
+
+            &.next {
+                justify-self: flex-end;
+            }
+        }
+    }
+
+    &:hover:enabled {
+        background-color: c.$stepper-green-dark;
+    }
+    // reference infra buttons for inspo..small, hard shadow on bottom
+    // to give dimension, then click triggers the hard-ish shadow to expand down 2x or so
+    // and there's an opacity or lightness that comes out from cursor to fill the button
+    &:hover:enabled .chevron.next {
+        transform: translateX(u.rem(3));
+    }
+
+    &:hover:enabled .chevron.prev {
+        transform: translateX(u.rem(-3));
+    }
+
+    &:disabled {
+        opacity: 60%;
+        cursor: default;
+    }
+}

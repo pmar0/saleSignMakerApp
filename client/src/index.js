@@ -13,7 +13,7 @@ root.render(
         <Route path='/' element={<App />}>
           <Route path='sign-maker'/>
         </Route>
-        <Route path='*'/> //include 'page not found' here
+        <Route path='*'/> {/*include 'page not found' here*/}
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

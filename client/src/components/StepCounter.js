@@ -1,5 +1,5 @@
 const StepCounter = (props) => {
-    const { stepArray, currentStep, square } = props
+    const { stepArray, currentStep, square, error } = props
 
     return(
         <div className='step-counter'>
@@ -11,12 +11,13 @@ const StepCounter = (props) => {
                         className={
                             'step' +
                             (currentStep===index?' active':'') +
+                            (currentStep+1===index && error?' partial':'') +
                             (currentStep>index?' complete':'') +
                             (square?' square':'')
                             }
                         >
                             <div className='checkmark-container'>
-                                <svg x="0px" y="0px" fill="none" class="checkmark-svg" viewBox="0 0 25 30">
+                                <svg x="0px" y="0px" className="checkmark-svg" viewBox="0 0 25 30">
                                     <path d="M2,19.2C5.9,23.6,9.4,28,9.4,28L23,2"/>
                                 </svg>
                             </div>

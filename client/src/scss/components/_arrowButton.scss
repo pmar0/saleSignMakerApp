@@ -13,7 +13,8 @@
     outline: 0;
     cursor: pointer;
     background-color: c.$stepper-green;
-    color: c.$text-color;
+    color: c.$text-white;
+    box-shadow: 0 .2rem 0.3rem hsla(0, 0%, 0%, 0.4);
     margin: u.rem(10);
     transition: background-color 200ms ease-in;
 
@@ -27,6 +28,10 @@
             width: u.rem(27);
             aspect-ratio: 1 / 1;
             stroke-width: u.rem(2.7);
+            stroke: currentColor;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
             transition: transform 200ms ease-in;
             
             &.prev {
@@ -39,22 +44,30 @@
         }
     }
 
-    &:hover:enabled {
-        background-color: c.$stepper-green-dark;
-    }
-    // reference infra buttons for inspo..small, hard shadow on bottom
-    // to give dimension, then click triggers the hard-ish shadow to expand down 2x or so
-    // and there's an opacity or lightness that comes out from cursor to fill the button
-    &:hover:enabled .chevron.next {
-        transform: translateX(u.rem(3));
-    }
+    &:enabled {
+        &:hover {
+            background-color: c.$stepper-green-dark;
+        }
+        // reference infra buttons for inspo..small, hard shadow on bottom
+        // to give dimension, then click triggers the hard-ish shadow to expand down 2x or so
+        // and there's an opacity or lightness that comes out from cursor to fill the button
+        &:hover .chevron.next {
+            transform: translateX(u.rem(3));
+        }
+    
+        &:hover .chevron.prev {
+            transform: translateX(u.rem(-3));
+        }
 
-    &:hover:enabled .chevron.prev {
-        transform: translateX(u.rem(-3));
+        &:active {
+            transform: translateY(.15rem);
+            box-shadow: 0 0 0.2rem hsla(0, 0%, 0%, 0.4);
+        }
     }
 
     &:disabled {
         opacity: 60%;
+        box-shadow: none;
         cursor: default;
     }
 }

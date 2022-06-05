@@ -1,0 +1,28 @@
+@use '../utils/' as u;
+
+.loader {
+    height: 1.15em;
+    border: 0.2em solid transparent;
+    border-top: 0.2em solid hsl(0deg 0% 100% / 85%);
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    animation: spin 1s ease infinite;
+
+    &.button {
+        position: absolute;
+        top: u.rem(10);
+
+        &.prev {
+            justify-self: flex-start;
+        }
+    
+        &.next {
+            justify-self: flex-end;
+        }
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

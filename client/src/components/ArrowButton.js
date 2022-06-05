@@ -1,29 +1,23 @@
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline'
+
 const ArrowButton = (props) => {
     const { children, onClick, disabled } = props
+    const isLoading = false
 
     return(
         <button
         className="arrowButton"
         onClick={() => onClick()}
-        disabled={disabled}
+        disabled={disabled || isLoading}
         >
-            {children.toLowerCase() === 'back'?
-                <div className="chevron-container">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="chevron prev" viewBox="0 0 24 24">
-                        <path d="M15 19l-7-7 7-7" />
-                    </svg>
-                </div>
-                :null
+            <div className="chevron-container">
+            {
+                !isLoading?
+                    <ChevronLeftIcon className={"chevron" + (children.toLowerCase() === "back"?" prev":" next")} />
+                :<div className={"loader button" + (children.toLowerCase() === "back"?" prev":" next")}></div>
             }
+            </div>
             {children}
-            {children.toLowerCase() === 'next'?
-                <div className="chevron-container">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="chevron next" viewBox="0 0 24 24">
-                        <path d="M9 5l7 7-7 7" />
-                    </svg>
-                </div>
-                :null
-            }
         </button>
     );
 };

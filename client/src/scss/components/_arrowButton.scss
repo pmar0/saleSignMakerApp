@@ -40,6 +40,7 @@
 
             &.next {
                 justify-self: flex-end;
+                transform: rotate(180deg);
             }
         }
     }
@@ -48,11 +49,9 @@
         &:hover {
             background-color: c.$stepper-green-dark;
         }
-        // reference infra buttons for inspo..small, hard shadow on bottom
-        // to give dimension, then click triggers the hard-ish shadow to expand down 2x or so
-        // and there's an opacity or lightness that comes out from cursor to fill the button
+
         &:hover .chevron.next {
-            transform: translateX(u.rem(3));
+            transform: rotate(180deg) translateX(u.rem(-3));
         }
     
         &:hover .chevron.prev {

@@ -22,7 +22,7 @@ const StepCounter = (props) => {
                                 </svg>
                             </div>
                             {
-                                index !=0
+                                index !==0
                                     ?<span className="step-connector-line"></span>
                                     :null
                             }

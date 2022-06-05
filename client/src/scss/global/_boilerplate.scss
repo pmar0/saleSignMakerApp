@@ -22,3 +22,9 @@ body {
     background-color: c.$background-color;
     color: c.$text-black;
 }
+
+// @media (prefers-reduced-motion) {
+//     * {
+//         transition: none !important;
+//     }
+// }

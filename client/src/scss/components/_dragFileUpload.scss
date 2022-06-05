@@ -1,0 +1,45 @@
+@use '../utils/' as u;
+@use '../global/colors' as c;
+
+.file-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    aspect-ratio: 3/1;
+    border: 3px dashed c.$text-grey;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-inline: auto;
+    font-size: 1.5rem;
+    padding: 1.25em;
+    font-weight: bold;
+    // line-height: 1.75rem;
+
+    &:hover:enabled {
+        color: c.$stepper-green;
+        border: 3px dashed c.$stepper-green;
+    }
+
+    & input {
+        display: none;
+    }
+
+    & span {
+        display: block;
+
+        &.secondary {
+            font-weight: initial;
+            font-size: .9rem;
+            color: hsl(0deg, 0%, 40%);
+        }
+    }
+
+    .upload-svg {
+        fill: currentColor;
+        width: 2.5rem;
+        aspect-ratio: 1/1;
+        margin-bottom: u.rem(5);
+    }
+}
